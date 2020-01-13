@@ -1,0 +1,15 @@
+name: interactive-viz
+channels:
+  - conda-forge
+  - pyviz
+dependencies:
+  - jupyter
+  - jupyterlab
+  - bokeh
+  - pandas
+  - numpy
+  - holoviews
+  - hvplot
+  - pip
+  - pip:
+    - graphviz
