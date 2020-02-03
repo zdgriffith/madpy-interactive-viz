@@ -15,14 +15,20 @@ df = {
 leagues = list(df)
 alpha_slider = Slider(title='Circle Opacity', start=0, end=1, value=0.5, step=0.01)
 
+TOOLTIPS = [
+    ("Player", "@Player"),
+    ("Team", "@Tm"),
+]
+
 figs = {}
 sources = {}
 circle_callbacks = {}
 for league in leagues:
     sources[league] = ColumnDataSource({
-        'x': df[league]['MP'], 'y': df[league]['PTS']
+        'x': df[league]['MP'], 'y': df[league]['PTS'],
+        'Player': df[league]['Player'], 'Tm': df[league]['Tm'],
     })
-    figs[league] = figure(title=f'2019 {league.upper()} Players')
+    figs[league] = figure(title=f'2019 {league.upper()} Players', tooltips=TOOLTIPS)
     circle = figs[league].circle(source=sources[league], x='x', y='y', alpha=0.5)
     
     alpha_slider.js_on_change(
